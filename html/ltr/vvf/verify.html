@@ -521,47 +521,29 @@
         <!-- END: Theme JS-->
 
         <!-- BEGIN: Page JS-->
-        <script>
+        <script type="module" >
+			import {
+				fetchGet,
+				getFormBody,
+				hideElem,
+				showElem,
+			} from './js/fetch.js';
+
 			const verify = document.querySelector('#verify');
 			const input = document.querySelector('#verify input');
 			const redAlert = document.querySelector('.alert-msg .bg-danger');
 			const greenAlert = document.querySelector('.alert-msg .bg-success');
+
             verify.addEventListener('submit', async e => {
 				e.preventDefault();
-				hideAlerts();
-                const formBody = getFormBody(e);
-                const data = await fetchEndpoint(formBody);
-                if (!data) greenAlert.classList.remove('d-none');
-                else redAlert.classList.remove('d-none');
+				hideElem(redAlert, greenAlert);
+                const { chassisNumber } = getFormBody(e);
+                const data = await fetchGet(`/stolenVehicles?id=${chassisNumber}`);
+                if (!data) showElem(greenAlert);
+                else showElem(redAlert);
 			});
-			input.addEventListener('focus',() => hideAlerts() );
-			const hideAlerts = () => {
-				greenAlert.classList.add('d-none');
-                redAlert.classList.add('d-none');
-			}
-            const getFormBody = e => {
-                    const obj = {};
-                    for (const item of e.srcElement) {
-                        Object.assign(obj, {
-                            [item.name]: item.value
-                        });
-                    }
-                    return obj;
-                }
-                // fetch endpoint 
-            const fetchEndpoint = async body => {
-                const {
-                    chassisNumber
-                } = body;
-                const url = `https://vehicle-verification.herokuapp.com/stolenVehicles?id=${chassisNumber}`;
-                response = await fetch(url);
-                if (response.status !== 200) return false;
-                const {
-                    data
-                } = await response.json();
-                return data;
-            };
-        </script>
+			input.addEventListener('focus', () => hideElem(redAlert, greenAlert));
+		</script>
         <!-- END: Page JS-->
 
 </body>
