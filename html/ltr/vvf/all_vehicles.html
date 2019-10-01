@@ -465,78 +465,8 @@ F
                                                 <th class="border-top-0">Date Reported</th>
                                             </tr>
                                         </thead>
-                                        <tbody>
-                                            <tr>
-                                                <td class="text-truncate">Toyota Hilux</td>
-                                                <td class="text-truncate">Blue</td>
-                                                <td class="text-truncate">KJA-193AA</td>
-                                                <td class="text-truncate">WDB67600115312803</td>
-                                                <td class="text-truncate">Lagos</td>
-                                                <td class="text-truncate">09/09/2019</td>
-                                            </tr>
-                                            <tr>
-                                                <td class="text-truncate">Toyota Hilux</td>
-                                                <td class="text-truncate">Blue</td>
-                                                <td class="text-truncate">KJA-193AA</td>
-                                                <td class="text-truncate">WDB67600115312803</td>
-                                                <td class="text-truncate">Lagos</td>
-                                                <td class="text-truncate">09/09/2019</td>
-                                                
-                                            </tr>
-                                            <tr>
-                                                <td class="text-truncate">Toyota Hilux</td>
-                                                <td class="text-truncate">Blue</td>
-                                                <td class="text-truncate">KJA-193AA</td>
-                                                <td class="text-truncate">WDB67600115312803</td>
-                                                <td class="text-truncate">Lagos</td>
-                                                <td class="text-truncate">09/09/2019</td>
-                                                
-                                            </tr>
-                                            <tr>
-                                                <td class="text-truncate">Toyota Hilux</td>
-                                                <td class="text-truncate">Blue</td>
-                                                <td class="text-truncate">KJA-193AA</td>
-                                                <td class="text-truncate">WDB67600115312803</td>
-                                                <td class="text-truncate">Lagos</td>
-                                                <td class="text-truncate">09/09/2019</td>
-                                                
-                                            </tr>
-                                            <tr>
-                                                <td class="text-truncate">Toyota Hilux</td>
-                                                <td class="text-truncate">Blue</td>
-                                                <td class="text-truncate">KJA-193AA</td>
-                                                <td class="text-truncate">WDB67600115312803</td>
-                                                <td class="text-truncate">Lagos</td>
-                                                <td class="text-truncate">09/09/2019</td>
-                                                
-                                            </tr>
-                                            <tr>
-                                                <td class="text-truncate">Toyota Hilux</td>
-                                                <td class="text-truncate">Blue</td>
-                                                <td class="text-truncate">KJA-193AA</td>
-                                                <td class="text-truncate">WDB67600115312803</td>
-                                                <td class="text-truncate">Lagos</td>
-                                                <td class="text-truncate">09/09/2019</td>
-                                                
-                                            </tr>
-                                            <tr>
-                                                <td class="text-truncate">Toyota Hilux</td>
-                                                <td class="text-truncate">Blue</td>
-                                                <td class="text-truncate">KJA-193AA</td>
-                                                <td class="text-truncate">WDB67600115312803</td>
-                                                <td class="text-truncate">Lagos</td>
-                                                <td class="text-truncate">09/09/2019</td>
-                                                
-                                            </tr>
-                                            <tr>
-                                                <td class="text-truncate">Toyota Hilux</td>
-                                                <td class="text-truncate">Blue</td>
-                                                <td class="text-truncate">KJA-193AA</td>
-                                                <td class="text-truncate">WDB67600115312803</td>
-                                                <td class="text-truncate">Lagos</td>
-                                                <td class="text-truncate">09/09/2019</td>
-                                                
-                                            </tr>
+                                        <tbody class='table-body'>
+                                            
                                         </tbody>
                                     </table>
                                 </div>
@@ -583,6 +513,30 @@ F
 
     <!-- BEGIN: Page JS-->
     <script src="../../../app-assets/js/scripts/pages/dashboard-ecommerce.min.js"></script>
+    <script type="module" >
+        import { fetchGet } from './js/fetch.js';
+        
+        const table = document.querySelector('.table-body');
+
+        (async () => {
+            const data = await fetchGet('/stolenVehicles');
+        data.forEach(car => {
+            const {make, model, color, vehicleChassisNumber, location, date } = car;
+            const splitDate =  date.split(' ')[0]
+            const tableData = [make, model, color, vehicleChassisNumber, location, splitDate];
+            const tr = document.createElement('tr');
+            tableData.forEach( property => {
+                const td = document.createElement('td');
+                td.setAttribute('class', 'text-truncate');
+                td.textContent = property;
+                tr.appendChild(td);
+            });
+            table.appendChild(tr);
+        });
+        })()
+        
+        
+	</script>
     <!-- END: Page JS-->
 
 </body>
