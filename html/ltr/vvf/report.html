@@ -396,7 +396,7 @@
 					</li>
 					<li class=" navigation-header"><span data-i18n="nav.category.ecommerce">Vehicles</span>
 					</li>
-					<li class=" nav-item"><a href="verify.html"><span class="menu-title" data-i18n="">Verify a
+					<li class=" nav-item"><a href="form.html"><span class="menu-title" data-i18n="">Verify a
 								Vehicle</span></a>
 					</li>
 					<li class=" nav-item"><a href="all_vehicles.html"><span class="menu-title" data-i18n="">View All
@@ -436,58 +436,122 @@
 								</div>
 								<div class="card-content collpase show">
 									<div class="card-body">
-	
-										<form class="form form-horizontal striped-rows form-bordered">
+
+										<!-- form start  -->
+										<form class="form report form-horizontal striped-rows form-bordered">
 											<div class="form-body">
+
+												<!-- Vehicle information  -->
 												<h4 class="form-section"><i class="ft-user"></i> Vehicle Information</h4>
+
+												<!-- 1. Make  -->
 												<div class="form-group row mx-auto">
-													<label class="col-md-3 label-control" for="projectinput1">Vehicle Model</label>
+													<label class="col-md-3 label-control" for="projectinput3">Vehicle Make</label>
 													<div class="col-md-9">
-														<input type="text" id="projectinput1" class="form-control"
-															placeholder="Vehicle Model" name="fname">
+														<input type="text" id="make" required class="form-control"
+															placeholder="make e.g Toyota" name="make">
 													</div>
 												</div>
+
+												<!-- 2. Model -->
 												<div class="form-group row mx-auto">
-													<label class="col-md-3 label-control" for="projectinput2">Chassis Number</label>
+													<label class="col-md-3 label-control" for="model">Vehicle Model</label>
 													<div class="col-md-9">
-														<input type="text" id="projectinput2" class="form-control"
-															placeholder="Chassis Number" name="lname">
+														<input type="text" id="model" required class="form-control"
+															placeholder="Vehicle Model e.g camry" name="model">
 													</div>
 												</div>
-	
+
+												<!-- 3. Chassis Number -->
 												<div class="form-group row mx-auto">
-													<label class="col-md-3 label-control" for="projectinput3">Color</label>
+													<label class="col-md-3 label-control" for="vehicleChassisNumber">Chassis Number</label>
 													<div class="col-md-9">
-														<input type="text" id="projectinput3" class="form-control"
-															placeholder="Color" name="email">
+														<input type="text" id="vehicleChassisNumber" required class="form-control"
+															placeholder="Chassis Number" name="vehicleChassisNumber"
+															minlength="17" maxlength="17" onkeypress="this.setCustomValidity('')" 
+															onchange="this.setCustomValidity('')" 
+															oninvalid="this.setCustomValidity('Please put in a valid chassis number')"
+														>
 													</div>
 												</div>
-	
+
+												<!-- 4. Production Year  -->
 												<div class="form-group row mx-auto last">
 													<label class="col-md-3 label-control" for="projectinput4">Production Year
 														</label>
 													<div class="col-md-9">
-														<input type="text" id="projectinput4" class="form-control"
-															placeholder="Production Year" name="phone">
+														<input type="number" id="year" required class="form-control"
+															placeholder="Production Year" name="year">
 													</div>
 												</div>
 	
-												<h4 class="form-section"><i class="la la-clipboard"></i> Incident</h4>
-	
+												<!-- 5. Color -->
 												<div class="form-group row mx-auto">
-													<label class="col-md-3 label-control"
-														for="projectinput5">Location Stolen</label>
+													<label class="col-md-3 label-control" for="projectinput3">Color</label>
 													<div class="col-md-9">
-														<input type="text" id="projectinput5" class="form-control"
-															placeholder="Location Stolen" name="company">
+														<input type="text" id="projectinput3" required class="form-control"
+															placeholder="Color" name="color">
+													</div>
+												</div>
+	
+												<!-- Owner information  -->
+												<h4 class="form-section"><i class="ft-user"></i> Owner Information</h4>
+												
+												<!-- 6. Owner first name  -->
+												<div class="form-group row mx-auto">
+													<label class="col-md-3 label-control" for="ownerFirstName">Owner First Name</label>
+													<div class="col-md-9">
+														<input type="text" id="ownerFirstName" required class="form-control"
+															placeholder="Owner First Name" name="ownerFirstName">
 													</div>
 												</div>
 
+												<!-- 7. Owner Last name  -->
 												<div class="form-group row mx-auto">
-														<label class="col-md-3 label-control" for="timesheetinput3">Date Stolen</label>
+													<label class="col-md-3 label-control" for="ownerLastName">Owner Last Name</label>
+													<div class="col-md-9">
+														<input type="text" id="ownerLastName" required class="form-control"
+															placeholder="Owner Last Name" name="ownerLastName">
+													</div>
+												</div>
+
+												<!-- 8. Owner Email Address  -->
+												<div class="form-group row mx-auto">
+													<label class="col-md-3 label-control" for="ownerEmailAddress">Owner Email Address</label>
+													<div class="col-md-9">
+														<input type="email" id="ownerEmailAddress" required class="form-control"
+															placeholder="Owner Email Address" name="ownerEmailAddress">
+													</div>
+												</div>
+	
+												<!-- 9. Owner Phone Number  -->
+												<div class="form-group row mx-auto">
+													<label class="col-md-3 label-control" for="ownerPhoneNumber">Owner Phone Number</label>
+													<div class="col-md-9">
+														<input type="number" id="ownerPhoneNumber" required class="form-control"
+															placeholder="Owner Phone Number" name="ownerPhoneNumber">
+													</div>
+												</div>
+	
+												<!-- Incident details  -->
+												<h4 class="form-section"><i class="la la-clipboard"></i> Incident</h4>
+	
+												<!-- 10. Location Stolen -->
+												<div class="form-group row mx-auto">
+													<label class="col-md-3 label-control"
+														for="location">Location Stolen</label>
+													<div class="col-md-9">
+														<input type="text" id="location" required class="form-control"
+															placeholder="Location Stolen" name="location">
+													</div>
+												</div>
+
+												<!-- 11. Date  -->
+												<div class="form-group row mx-auto">
+														<label class="col-md-3 label-control" for="date">Date Stolen</label>
 														<div class="col-md-9">
 															<div class="position-relative has-icon-left">
-																<input type="date" id="timesheetinput3" class="form-control"
+																<input type="date" id="date" class="form-control"
 																	name="date">
 																<div class="form-control-position">
 																	<i class="ft-message-square"></i>
@@ -496,24 +560,28 @@
 														</div>
 													</div>
 	
+												<!-- 12. description  -->
 												<div class="form-group row mx-auto last">
-													<label class="col-md-3 label-control" for="projectinput9">Brief 
+													<label class="col-md-3 label-control" for="description">Brief 
 														Description</label>
 													<div class="col-md-9">
-														<textarea id="projectinput9" rows="5" class="form-control"
-															name="comment" placeholder="Brief Description"></textarea>
+														<textarea id="description" rows="5" required class="form-control"
+															name="description" placeholder="Brief Description"></textarea>
 													</div>
 												</div>
 
 												
 											</div>
 	
+											<!-- Submit  -->
 											<div class="form-actions">
 												<button type="submit" class="btn btn-primary">
-													<i class="la la-check-square-o"></i> Save
+													<i class="la la-check-square-o"></i> Report
 												</button>
 											</div>
 										</form>
+										<!-- form end  -->
+
 									</div>
 								</div>
 							</div>
@@ -549,7 +617,27 @@
     <script src="../../../app-assets/js/scripts/footer.min.js"></script>
     <!-- END: Theme JS-->
 
-    <!-- BEGIN: Page JS-->
+	<!-- BEGIN: Page JS-->
+	<!-- BEGIN: Page JS-->
+	<script type="module" >
+		import {
+			fetchPost,
+			getFormBody,
+			hideElem,
+			showElem,
+		} from './js/fetch.js';
+
+		const form = document.querySelector('form.report');
+
+		form.addEventListener('submit', async e => {
+			e.preventDefault();
+			const formBody = getFormBody(e);
+			const data = await fetchPost('/stolenVehicles', formBody);
+			window.location.href = '/html/ltr/vvf/report.html';
+		});
+		// input.addEventListener('focus', () => hideElem(redAlert, greenAlert));
+	</script>
+	<!-- END: Page JS-->
     <!-- END: Page JS-->
 
   </body>
