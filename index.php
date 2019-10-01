@@ -81,12 +81,12 @@
                                 </div>
                                 <div class="col-sm-6 col-12 float-sm-left text-center text-sm-right"><a href="recover-password.html" class="card-link">Forgot Password?</a></div>
                             </div>
-                            <a href="dashboard.html" class="btn btn-outline-info btn-block"> Login as an Admin</a>
+                            <a href="/dashboard" class="btn btn-outline-info btn-block"> Login as an Admin</a>
                         </form>
                     </div>
                     <p class="card-subtitle line-on-side text-muted text-center font-small-3 mx-2 my-1"><span>Not an Admin ?</span></p>
                     <div class="card-body">
-                        <a href="verify_user.html" class="btn btn-outline-danger btn-block"> Login as A User</a>
+                        <a href="/verify_user" class="btn btn-outline-danger btn-block"> Login as A User</a>
                     </div>
                 </div>
             </div>
