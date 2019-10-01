@@ -59,7 +59,7 @@
 								alt="modern admin logo" src="../../../app-assets/images/logo/logo.png">
 							<h3 class="brand-text">Vehicle Verification</h3>
 						</a></li>
-					
+
 				</ul>
 			</div>
 			<!-- <div class="navbar-container content">
@@ -399,7 +399,7 @@
 	<div class="main-menu menu-fixed menu-dark menu-accordion menu-shadow" data-scroll-to-active="true">
 		<div class="main-menu-content">
 			<ul class="navigation navigation-main" id="main-menu-navigation" data-menu="menu-navigation">
-				<li class="active"><a ><span class="menu-title" data-i18n="">Dashboard </span></a>
+				<li class="active"><a><span class="menu-title" data-i18n="">Dashboard </span></a>
 				</li>
 				<li class=" navigation-header"><span data-i18n="nav.category.ecommerce">Vehicles</span>
 				</li>
@@ -418,7 +418,7 @@
 				<div class="content-header-left col-md-6 col-12 mb-2 breadcrumb-new">
 					<h3 class="content-header-title mb-0 d-inline-block">Verify A STolen Vehicle</h3>
 					<div class="row breadcrumbs-top d-inline-block">
-						
+
 					</div>
 				</div>
 			</div>
@@ -430,26 +430,52 @@
 						<div class="col-md-6">
 							<div class="card">
 								<div class="card-header">
-									<h4 class="card-title" id="basic-layout-card-center">Put in the plate Number to verify</h4>
-									
+									<h4 class="card-title" id="basic-layout-card-center">Put in the plate Number to
+										verify</h4>
+
 								</div>
 								<div class="card-content collapse show">
 									<div class="card-body">
-										<form class="form">
+										<!-- Form start  -->
+										<form class="form" id='verify'>
 											<div class="form-body">
 
 												<div class="form-group">
 													<label for="eventRegInput1">Chassis Number</label>
-													<input type="text" id="eventRegInput1" class="form-control"
-														placeholder="plate Number" name="fullname">
+													<input type="text" class="form-control" minlength="17"
+														maxlength="17" onkeypress="this.setCustomValidity('')"
+														onchange="this.setCustomValidity('')"
+														oninvalid="this.setCustomValidity('Please put in a valid chassis number')"
+														required placeholder="Chassis Number" name="chassisNumber">
 												</div>
 
-											<div class="form-actions center">
-												<button type="submit" class="btn btn-primary">
-													Verify
-												</button>
-											</div>
+												<div class="form-actions center">
+													<button type="submit" class="btn btn-primary">
+														Verify
+													</button>
+												</div>
 										</form>
+										<!-- form end  -->
+										<div class="alert-msg">
+											<div class="alert d-none bg-success alert-icon-left alert-dismissible mb-2 text-center"
+												role="alert">
+												<!-- <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+														<span aria-hidden="true">×</span>
+													</button> -->
+												<strong>Safe!</strong> This vehicle has not been reported stolen
+												<br>
+											</div>
+											<div class="alert d-none bg-danger alert-icon-left alert-dismissible mb-2 text-center"
+												role="alert">
+												<!-- <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+														<span aria-hidden="true">×</span>
+													</button> -->
+												<strong>Un-Safe!</strong> This is a stolen vehicle
+												<br>
+												<button class="btn btn-dark mt-1"> see details </button>
+											</div>
+										</div>
+
 									</div>
 								</div>
 							</div>
@@ -489,7 +515,30 @@
 	<script src="../../../app-assets/js/scripts/footer.min.js"></script>
 	<!-- END: Theme JS-->
 
-	<!-- BEGIN: Page JS-->
+	 <!-- BEGIN: Page JS-->
+	 <script type="module" >
+		import {
+			fetchGet,
+			getFormBody,
+			hideElem,
+			showElem,
+		} from './js/fetch.js';
+
+		const verify = document.querySelector('#verify');
+		const input = document.querySelector('#verify input');
+		const redAlert = document.querySelector('.alert-msg .bg-danger');
+		const greenAlert = document.querySelector('.alert-msg .bg-success');
+
+		verify.addEventListener('submit', async e => {
+			e.preventDefault();
+			hideElem(redAlert, greenAlert);
+			const { chassisNumber } = getFormBody(e);
+			const data = await fetchGet(`/stolenVehicles?id=${chassisNumber}`);
+			if (!data) showElem(greenAlert);
+			else showElem(redAlert);
+		});
+		input.addEventListener('focus', () => hideElem(redAlert, greenAlert));
+	</script>
 	<!-- END: Page JS-->
 
 </body>
