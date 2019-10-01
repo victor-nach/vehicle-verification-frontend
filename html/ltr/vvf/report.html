@@ -464,10 +464,10 @@
 
 												<!-- 3. Chassis Number -->
 												<div class="form-group row mx-auto">
-													<label class="col-md-3 label-control" for="projectinput2">Chassis Number</label>
+													<label class="col-md-3 label-control" for="vehicleChassisNumber">Chassis Number</label>
 													<div class="col-md-9">
-														<input type="text" id="projectinput2" required class="form-control"
-															placeholder="Chassis Number" name="lname"
+														<input type="text" id="vehicleChassisNumber" required class="form-control"
+															placeholder="Chassis Number" name="vehicleChassisNumber"
 															minlength="17" maxlength="17" onkeypress="this.setCustomValidity('')" 
 															onchange="this.setCustomValidity('')" 
 															oninvalid="this.setCustomValidity('Please put in a valid chassis number')"
@@ -480,7 +480,7 @@
 													<label class="col-md-3 label-control" for="projectinput4">Production Year
 														</label>
 													<div class="col-md-9">
-														<input type="text" id="year" required class="form-control"
+														<input type="number" id="year" required class="form-control"
 															placeholder="Production Year" name="year">
 													</div>
 												</div>
@@ -528,7 +528,7 @@
 												<div class="form-group row mx-auto">
 													<label class="col-md-3 label-control" for="ownerPhoneNumber">Owner Phone Number</label>
 													<div class="col-md-9">
-														<input type="text" id="ownerPhoneNumber" required class="form-control"
+														<input type="number" id="ownerPhoneNumber" required class="form-control"
 															placeholder="Owner Phone Number" name="ownerPhoneNumber">
 													</div>
 												</div>
@@ -633,7 +633,7 @@
 			e.preventDefault();
 			const formBody = getFormBody(e);
 			const data = await fetchPost('/stolenVehicles', formBody);
-			// window.location.href = '/html/ltr/vvf/report.html';
+			window.location.href = '/html/ltr/vvf/report.html';
 		});
 		// input.addEventListener('focus', () => hideElem(redAlert, greenAlert));
 	</script>
