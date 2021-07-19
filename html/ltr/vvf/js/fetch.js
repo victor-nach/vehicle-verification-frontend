@@ -1,4 +1,4 @@
-const baseUrl = 'https://vehicle-verification-api.herokuapp.com';
+const baseUrl = 'https://plapp-1.herokuapp.com';
 
 export const fetchGet = async url => {
     const response = await fetch(baseUrl + url);
